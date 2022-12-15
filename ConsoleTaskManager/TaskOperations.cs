@@ -1,22 +1,26 @@
 ﻿using System.Diagnostics;
-using System.Linq;
+
 
 namespace ConsoleTaskManager
 {
     public class TaskOperations
     {
         private static Thread thread;
+        private static ThreadStart threadStart = threadStart;
+
         static Process[] processList = Process.GetProcesses();
 
         //Method that list all the running processes in my system
         public static void ListProcesses()
         {
-            //Process[] processList = Process.GetProcesses();
-
             Console.WriteLine("\n\t List of Running Processes are as follow:\n\t===========================================\n");
-            foreach (Process process in processList)
+            var orderedProcesses = from process in processList
+                                   orderby process.ProcessName
+                                   select (new { process.Id, process.ProcessName });
+
+            foreach (var process in orderedProcesses)
             {
-                Console.WriteLine($"\n\t Process ID: {process.Id}\t Process Name: {process.ProcessName}");
+                Console.WriteLine($"\n\t Process ID: {process.Id} \t Process Name: {process.ProcessName}");
             }
         }
 
@@ -93,58 +97,46 @@ namespace ConsoleTaskManager
                 {
                     Console.WriteLine("\n\t The Process name you entered does not exist!, try again: ");
                     ManageProcess(ProcessName);
-                }    
+                }
             }
         }
 
 
         //Method that allow creation of custom thread
-        public static void CreateThread(ThreadStart threadStart)
+        public static void CreateThread(string threadName)
         {
-            Thread thread = new Thread(threadStart);
+            thread = new Thread(threadStart);
+            threadName = threadName;
             thread.Start();
-            Console.WriteLine("Custom thread has been created.");
+            Console.WriteLine($"\n\t Custom thread {threadName} has been created.");
         }
 
-
-        //Method that check if a thread isAlive
-        public static bool CheckThreadAlive(Thread thread)
+        //method to view list of current threads
+        public static void ViewThreadList()
         {
-            return thread.IsAlive;
-        }
+            ProcessThreadCollection currentThreads = Process.GetCurrentProcess().Threads;
 
-
-        //Method that check if a thread is sleeping
-        public static bool CheckThreadSleeping(Thread thread)
-        {
-            return thread.ThreadState == System.Threading.ThreadState.WaitSleepJoin;
-        }
-
-
-        // Method to select Thread state option
-        public static void CheckThreadState(string threadOption)
-        {
-            switch (threadOption)
+            foreach (ProcessThread thread in currentThreads)
             {
-                case "1":
-                    {
-                        Console.WriteLine($"\n\t Is this thread Alive ?\t Response: {0}", CheckThreadAlive(thread));
-                    }
-                    break;
-
-                case "2":
-                    {
-                        Console.WriteLine($"\n\t Is this thread Sleeping ?\t Response: {0}", CheckThreadSleeping(thread));
-                    }
-                    break;
-
-                default:
-                    {
-                        Console.WriteLine("You entered an invalid option! try again: ");
-                        CheckThreadState(threadOption);
-                    }
-                    break;
+                Console.WriteLine($"\n\t Thread id: {thread.Id}");
             }
+        }
+
+        public static void CheckThreadState(string threadId)
+        {
+
+            foreach (ProcessThread threadStateId in Process.GetCurrentProcess().Threads)
+            {
+                if (threadStateId.Id == int.Parse(threadId))
+                {
+                    Console.WriteLine($"\n\t Thread Id: {threadId}\t state: {threadStateId.ThreadState.ToString()}");
+                }
+
+                Console.WriteLine("\n\t Thread name you entered does not exist! try again");
+
+                CheckThreadState(threadId);
+            }
+
         }
     }
 }

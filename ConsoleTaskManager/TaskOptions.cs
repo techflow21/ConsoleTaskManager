@@ -5,12 +5,10 @@ namespace ConsoleTaskManager
     {
         private static string fileName;
         private static string processName;
-        private static ThreadStart threadStart;
-        private static string threadOption;
 
         public static void TaskOptions()
         {
-            Console.WriteLine("\n\t Select Your desired Task Operations\n\t ====================================\n\n\t 1. View list of all Running Processes\n\t 2. To Create a Custom Process\n\t 3. Search for a Process\n\t 4. Create a Custom Thread\n\t 5. Check Thread State\n");
+            Console.Write("\n\t Select Your desired Task Operations\n\t ====================================\n\n\t 1. View list of all Running Processes\n\t 2. To Create a Custom Process\n\t 3. Search for a Process\n\t 4. Create a Custom Thread\n\t 5. Check Thread State\n\n\t ");
 
             var operationOption = Console.ReadLine();
 
@@ -25,9 +23,8 @@ namespace ConsoleTaskManager
 
                 case "2":
                     {
-                        Console.WriteLine("\n\t Enter a file Name: ");
+                        Console.WriteLine("\n\t Enter a file Name: \n\t ");
                         fileName = Console.ReadLine();
-                        //fileName = "notepad.exe";
                         TaskOperations.CreateProcess(fileName);
                         Utility.ContinueOption();
                     }
@@ -35,28 +32,29 @@ namespace ConsoleTaskManager
 
                 case "3":
                     {
-                        Console.WriteLine("\n\t Enter a Process Name: ");
+                        Console.Write("\n\t Enter a Process Name: \n\t ");
                         processName = Console.ReadLine();
-
                         TaskOperations.ManageProcess(processName);
-                        //Utility.ContinueOption();
                     }
                     break;
 
                 case "4":
                     {
-                        Console.WriteLine("\n\t Enter a Thread Name: ");
-                        //threadStart = Console.ReadLine();
+                        Console.WriteLine("\n\t Enter a Thread Name: \n\t ");
+                        var threadName = Console.ReadLine();
 
-                        TaskOperations.CreateThread(threadStart);
+                        TaskOperations.CreateThread(threadName);
                         Utility.ContinueOption();
                     }
                     break;
 
                 case "5":
                     {
-
-                        TaskOperations.CheckThreadState(threadOption);
+                        TaskOperations.ViewThreadList();
+                        Console.Write("\n\t Enter thread id to check it's status\n\n\t ");
+                        var threadStateId = Console.ReadLine();
+                        
+                        TaskOperations.CheckThreadState(threadStateId);
                         Utility.ContinueOption();
                     }
                     break;

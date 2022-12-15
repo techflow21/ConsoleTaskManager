@@ -9,7 +9,7 @@
 
         public static void ContinueOption()
         {
-            Console.WriteLine("\n\t Do you want to continue (Y/N)? \n");
+            Console.Write("\n\t Do you want to continue (Y/N)? \n\n\t ");
             var option = Console.ReadLine();
 
             switch (option.ToUpper())

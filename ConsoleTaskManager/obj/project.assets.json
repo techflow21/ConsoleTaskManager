@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\NewM\\ConsoleTaskManager\\ConsoleTaskManager\\ConsoleTaskManager.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\ConsoleTaskManager\\ConsoleTaskManager\\ConsoleTaskManager.csproj",
       "projectName": "ConsoleTaskManager",
-      "projectPath": "C:\\Users\\HP\\Desktop\\NewM\\ConsoleTaskManager\\ConsoleTaskManager\\ConsoleTaskManager.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\ConsoleTaskManager\\ConsoleTaskManager\\ConsoleTaskManager.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\NewM\\ConsoleTaskManager\\ConsoleTaskManager\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\ConsoleTaskManager\\ConsoleTaskManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
