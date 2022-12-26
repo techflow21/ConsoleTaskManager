@@ -1,7 +1,8 @@
 # ConsoleTaskManager
 
 This is a Console Task Manager
-This showcases how process and threads are related and different methods availble to interact with both Process and Thread.It mimics how System Task Manager Operates 
+This showcases how process and threads are related and different methods availble to interact with both Process and Thread. It mimics how System Task Manager operates.
+ 
 Features Implemented:
 =======================
 1. To view all Processes running in System.
